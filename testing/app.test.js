@@ -28,7 +28,7 @@ describe('Unit Test /app1', () => {
 
   describe('Unit Test /zakaria', () => {
     it('should respond with "nama saya zakaria"', async () => {
-      const response = await request(app).get('/app2');
+      const response = await request(app).get('/zakaria');
       expect(response.status).toBe(200);
     });
   });
