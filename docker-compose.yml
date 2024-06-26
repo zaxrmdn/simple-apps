@@ -21,7 +21,6 @@ services:
       - MYSQL_DATABASE=training
       - MYSQL_USER=peserta
       - MYSQL_PASSWORD=password
-      - MYSQL_HOST=db
     volumes:
       - ./apps/database/:/docker-entrypoint-initdb.d
       - db-data:/var/lib/mysql
@@ -40,7 +39,7 @@ services:
     ports:
       - "80:80"
     depends_on:
-      - backend
+      - backend:
 
 volumes:
   app-data:
