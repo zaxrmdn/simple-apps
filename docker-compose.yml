@@ -7,7 +7,7 @@ services:
     ports:
       - "3000"
     volumes:
-      - app-data:/app/public/images
+      - app-data:/apps/public/images
   
   db:
     image: "mariadb"
@@ -22,8 +22,8 @@ services:
       - MYSQL_USER=peserta
       - MYSQL_PASSWORD=password
     volumes:
-    - ./apps/database/:/docker-entrypoint-initdb.d
-    - db-data:/var/lib/mysql
+      - ./apps/database/:/docker-entrypoint-initdb.d
+      - db-data:/var/lib/mysql
     
   phpmyadmin:
     image: "phpmyadmin"
