@@ -19,6 +19,7 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD:password
       - MYSQL_DATABASE:training
+      - MYSQL_TABLE:tb_data
       - MYSQL_USER:peserta
       - MYSQL_PASSWORD:password
     volumes:
