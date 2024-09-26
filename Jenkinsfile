@@ -33,7 +33,7 @@ pipeline {
                 sonar-scanner \
                 -Dsonar.projectKey=simple-apps \
                 -Dsonar.sources=. \
-                -Dsonar.host.url=http://10.23.10.106:9000 \
+                -Dsonar.host.url=http://172.23.10.106:9000 \
                 -Dsonar.login=e9e796d039ff623200b8267de82719910a2b8831'''
             }
         }
