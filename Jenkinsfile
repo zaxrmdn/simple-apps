@@ -11,7 +11,7 @@ pipeline {
         stage('Build') {
             steps {
                 sh'''
-                cd app
+                cd apps
                 npm install
                 '''
             }
@@ -20,7 +20,7 @@ pipeline {
         stage('Testing') {
             steps {
                 sh'''
-                cd app
+                cd apps
                 npm test
                 npm run test:coverage
                 '''
