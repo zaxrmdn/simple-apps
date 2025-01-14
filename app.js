@@ -21,6 +21,10 @@ app.get('/app2', (req, res) => {
   res.send('Hello this App 2!')
 });
 
+app.get('/zakaria', (req, res) => {
+  res.send('zakaria')
+});
+
 app.get('/users', (req, res, next) => {
   const sql = "SELECT * FROM tb_data ORDER BY id desc"
   connection.query(sql,(fields) => {
