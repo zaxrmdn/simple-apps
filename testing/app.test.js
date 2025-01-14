@@ -18,6 +18,13 @@ describe('Unit Test /app1', () => {
       expect(response.status).toBe(200);
     });
   });
+  
+describe('Unit Test /zakaria', () => {
+    it('should respond with "zakria"', async () => {
+      const response = await request(app).get('/zakaria');
+      expect(response.status).toBe(200);
+    });
+  });
 
   describe('Unit Test /app2', () => {
     it('should respond with "Hello App2!"', async () => {
