@@ -12,7 +12,7 @@ services:
       - app-data:/app/public/images
 
   db:
-    image: "mariadb"
+    image: "mariadb:10.6.20-focal"
     restart: always
     links:
       - phpmyadmin
