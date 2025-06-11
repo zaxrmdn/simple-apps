@@ -11,7 +11,7 @@ services:
       - app-data:/apps/public/images
 
   db:
-    image: "mariadb"
+    image: "mariadb:10.6.22-jammy"
     restart: always
     links:
       - dbms
