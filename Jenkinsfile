@@ -49,7 +49,7 @@ pipeline {
         
         stage('Backup') {
             steps {
-                 sh 'docker compose push' 
+                 build 'Backup Image' 
             }
         }
     }
