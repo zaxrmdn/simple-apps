@@ -3,5 +3,5 @@ node_modules/
 coverage/
 testing/
 sonar-project.properties
-package-lock.jason
+package-lock.json
 README.md
