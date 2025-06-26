@@ -30,3 +30,6 @@ pipeline {
                 -Dsonar.login=sqp_0718933dad4bad716659bc4f15baca819265fd5e'''
             }
         }
+        
+    }
+}
