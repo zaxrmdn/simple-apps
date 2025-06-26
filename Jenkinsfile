@@ -36,5 +36,11 @@ pipeline {
                 docker compose build
                 docker compose up -d'''}
         }
+
+        stage('Backup Image') {
+            steps {
+                sh '''
+                docker compose push'''}
+        }
     }
 }

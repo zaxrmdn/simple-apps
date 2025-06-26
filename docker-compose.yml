@@ -2,6 +2,7 @@ services:
 
   backend:
     build: ./apps
+    image: zaxrmdn/simple-apps
     restart: always
     ports:
       - "3000"
