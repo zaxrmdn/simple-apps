@@ -8,6 +8,8 @@ require('dotenv').config();
 const logger = require('./middleware/logger')
 app.use(logger)
 const connection = require('./middleware/db_connect');
+app.disable("x-powered-by");
+
 
 // Dashboard
 app.use('/', express.static(path.join(__dirname, 'public')));
@@ -23,11 +25,7 @@ app.get('/app2', (req, res) => {
 app.get('/users', (req, res, next) => {
   const sql = "SELECT * FROM tb_data ORDER BY id desc"
   connection.query(sql,(error, fields) => {
-    if (error) {
-      console.log('error', error)
-    } else {
       res.send(fields)
-    }
   })
 });
 
