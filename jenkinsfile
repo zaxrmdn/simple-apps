@@ -20,12 +20,14 @@ pipeline {
         }
         stage('Code Review') {
             steps {
-            sh '''sonar   -Dsonar.host.url=http://172.23.12.117:9000
-             -Dsonar.token=sqp_88d245534e0aec1eff69e12eaebea8aa78b2aa44
-             -Dsonar.projectKey=simple-apps'''
+            sh '''sonar \
+            -Dsonar.host.url=http://172.23.12.117:9000 \
+            // -Dsonar.token=sqp_26a8b9b1524af40878bd5f0e1e4b825eb25fbca2 \
+            // -Dsonar.projectKey=simple-apps'''
+            
             }
         }
-        
+
         stage('Deploy compose') {
             steps {
                 sh '''
