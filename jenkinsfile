@@ -1,0 +1,38 @@
+pipeline {
+    agent {label 'production'}
+
+    stages {
+        stage('Checkout SCM') {
+            steps {git branch: 'main', url: 'https://github.com/zaxrmdn/simple-apps.git'}
+        }
+        stage('Build') {
+            steps {
+                sh '''cd apps
+                npm install'''
+            }
+        }
+        stage('Testing') {
+            steps {
+                sh '''cd apps
+                npm test
+                npm run test:coverage'''
+            }
+        }
+        stage('Code Review') {
+            steps {
+            sh '''sonar   -Dsonar.host.url=http://172.23.12.117:9000
+             -Dsonar.token=sqp_88d245534e0aec1eff69e12eaebea8aa78b2aa44
+             -Dsonar.projectKey=simple-apps'''
+            }
+        }
+        
+        stage('Deploy compose') {
+            steps {
+                sh '''
+                docker compose build
+                docker compose up -d
+                '''
+            }
+        }
+    }
+}
