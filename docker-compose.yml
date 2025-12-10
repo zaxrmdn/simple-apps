@@ -7,11 +7,11 @@ services:
     links:
       - db
     environment:
-      DB_NAME=training
-      DB_HOST=db
-      DB_USER=peserta
-      DB_PASS=password
-      APP_PORT=3000
+      - DB_NAME=training
+      - DB_HOST=db
+      - DB_USER=peserta
+      - DB_PASS=password
+      - APP_PORT=3000
     ports:
       - "3000"
     volumes:
