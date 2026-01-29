@@ -14,5 +14,14 @@ pipeline {
                 '''
             }
         }
+
+        stage('Backup Image') {
+            steps {
+                sh '''
+                docker compose push
+                '''
+            }
+        }
+        
     }
 }

@@ -2,7 +2,7 @@ version: "3.9"
 services:
 
   backend:
-    build: ./apps
+    build: ./apps:v1
     restart: always
     links:
       - db
@@ -41,7 +41,7 @@ services:
       - PMA_HOST=db
 
   web:
-    build: ./nginx
+    build: ./nginx:V1
     restart: always
     ports:
     - "80:80"
