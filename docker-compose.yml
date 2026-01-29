@@ -3,7 +3,7 @@ services:
 
   backend:
     build: ./apps
-    image: docker.io/zaxrmdn/simple-apps:v1
+    image: docker.io/zaxrmdn/simple-apps:v1-apps
     restart: always
     links:
       - db
@@ -43,7 +43,7 @@ services:
 
   web:
     build: ./nginx
-    image: docker.io/zaxrmdn/simple-apps:v1
+    image: docker.io/zaxrmdn/simple-apps:v1-web
     restart: always
     ports:
     - "80:80"
