@@ -22,6 +22,7 @@ pipeline {
         stage('Code Review') {
             steps {
                 sh '''
+                cd apps
                 sonar-scanner \
                  -Dsonar.projectKey=simple-apps \
                  -Dsonar.sources=. \
