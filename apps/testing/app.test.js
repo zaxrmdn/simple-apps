@@ -1,6 +1,9 @@
 const request = require('supertest');
 const mysql = require('mysql');
+<<<<<<< HEAD
 require('dotenv').config();
+=======
+>>>>>>> 8f5532c467a68da3df5ed27ddaadd13eeccd4bd4
 
 const connection = require('../middleware/db_connect');
 const app = require('../app'); // Replace with the path to your application file
@@ -27,9 +30,26 @@ describe('Unit Test /app1', () => {
   });
 
 describe('Integration Test Connect Database', () => {
+<<<<<<< HEAD
   beforeEach(() => {
     // Set the connection for the application to use
     app.set('connection', connection.connect);
+=======
+  let connection;
+
+  beforeEach(() => {
+    // Create a connection pool instead of a single connection
+    connection = mysql.createPool({
+      connectionLimit: 10, // Adjust the limit according to your requirements
+      host: process.env.DB_HOST,
+      user: process.env.DB_USER,
+      password: process.env.DB_PASS,
+      database: process.env.DB_NAME
+    });
+
+    // Set the connection for the application to use
+    app.set('connection', connection);
+>>>>>>> 8f5532c467a68da3df5ed27ddaadd13eeccd4bd4
   });
 
   afterEach(() => {

@@ -3,13 +3,18 @@ const mysql = require('mysql');
 const app = express()
 const path = require('path')
 require('dotenv').config();
+<<<<<<< HEAD
 app.disable("x-powered-by");
+=======
+const PORT = process.env.PORT;
+>>>>>>> 8f5532c467a68da3df5ed27ddaadd13eeccd4bd4
 
 // Import Middleware
 const logger = require('./middleware/logger')
 app.use(logger)
 const connection = require('./middleware/db_connect');
 
+app.disable("x-powered-by")
 // Dashboard
 app.use('/', express.static(path.join(__dirname, 'public')));
 
@@ -24,8 +29,12 @@ app.get('/app2', (req, res) => {
 app.get('/users', (req, res, next) => {
   const sql = "SELECT * FROM tb_data ORDER BY id desc"
   connection.query(sql,(error, fields) => {
+<<<<<<< HEAD
       console.log('error', error)
       res.send(fields)
+=======
+    res.send(fields)
+>>>>>>> 8f5532c467a68da3df5ed27ddaadd13eeccd4bd4
   })
 });
 
