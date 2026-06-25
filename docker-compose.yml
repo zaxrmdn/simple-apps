@@ -1,23 +1,15 @@
-<<<<<<< HEAD
-=======
-version: "3.9"
->>>>>>> 8f5532c467a68da3df5ed27ddaadd13eeccd4bd4
 services:
-
   backend:
     build: ./apps
     restart: always
     links:
       - db
-<<<<<<< HEAD
     environment:
       - DB_NAME=training
       - DB_HOST=db
       - DB_USER=peserta
       - DB_PASS=password
       - APP_PORT=3000
-=======
->>>>>>> 8f5532c467a68da3df5ed27ddaadd13eeccd4bd4
     ports:
       - "3000"
     volumes:
@@ -43,11 +35,8 @@ services:
     image: "phpmyadmin"
     restart: always
     ports:
-<<<<<<< HEAD
       - "7080:80"
-=======
       - "8000:80"
->>>>>>> 8f5532c467a68da3df5ed27ddaadd13eeccd4bd4
     environment:
       - PMA_HOST=db
 
