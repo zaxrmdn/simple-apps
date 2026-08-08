@@ -17,7 +17,9 @@ pipeline {
 
         stage('Code Review')
             {steps{
-                sh '''sonar-scanner \\
+                sh '''
+                cd apps
+                sonar-scanner \\
                   -Dsonar.projectKey=simple-apps-zakaria \\
                   -Dsonar.sources=. \\
                   -Dsonar.host.url=http://172.23.7.105:9000 \\
