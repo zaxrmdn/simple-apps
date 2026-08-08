@@ -1,5 +1,5 @@
 pipeline {
-    agent {label 'srv2-zakaria'}
+    agent {label 'srv1-zakaria'}
     stages {
         stage('Checkout'){steps{ checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/zaxrmdn/simple-apps.git']]) }}
         stage('Build')
