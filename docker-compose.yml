@@ -44,7 +44,7 @@ services:
     build: ./nginx
     restart: always
     ports:
-    - "80:80"
+    - "8880:80"
     depends_on:
     - backend
 
