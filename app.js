@@ -17,7 +17,7 @@ app.use('/', express.static(path.join(__dirname, 'public')));
 app.get('/app1', (req, res) => {
   res.send('Hello this Apps 1!')
 });
-
+sjdiofjjijij
 app.get('/app2', (req, res) => {
   res.send('Hello this App 2!')
 });
