@@ -1,5 +1,8 @@
 pipeline {
     agent { label 'host1-zakaria' }
+    parameters {
+        choice(name: 'ENVIRONMENT', choices: ['staging', 'production'], description: 'Pilih environment')
+    }
 
     stages {
         stage('Pull SCM') {
@@ -42,7 +45,21 @@ pipeline {
 
         stage('Deliver') {
             steps {
-                input message: 'Apakah anda sudah yakin untuk deploy ke production?', ok: 'Deploy Sekarang!'
+             script {
+                def userInput = input (
+                    message: "Lanjutkan? $(params.ENVIRONMENT)"
+                    parameters: [
+                            booleanParam(defaultValue: true, description: 'Setujui deployment?', name: 'APPROVE_STATUS')
+                        ]
+                )
+                if (userInput == true) {
+                        echo "Approval diberikan! Melanjutkan deployment..."
+                        env.DEPLOY_STATUS = 'APPROVED'
+                } else {
+                        echo "Deployment dibatalkan oleh user."
+                        env.DEPLOY_STATUS = 'REJECTED'
+                    }
+                }
             }
         }
         
