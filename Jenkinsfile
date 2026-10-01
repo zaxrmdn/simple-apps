@@ -47,7 +47,7 @@ pipeline {
             steps {
              script {
                 def userInput = input (
-                    message: "Lanjutkan? $(params.ENVIRONMENT)"
+                    message: "Lanjutkan? ${params.ENVIRONMENT}"
                     parameters: [
                             booleanParam(defaultValue: true, description: 'Setujui deployment?', name: 'APPROVE_STATUS')
                         ]
