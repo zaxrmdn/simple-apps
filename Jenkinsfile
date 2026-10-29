@@ -25,7 +25,8 @@ pipeline {
                     string(credentialsId:'db-password', variable: 'db-password'),
                     string(credentialsId:'db-host', variable: 'db-host'),
                     string(credentialsId:'app-port', variable: 'app-port'),
-                ])
+                ]) 
+                {
                 sh'''
                 cat >> .env <EOF \
                 DB_NAME=${db-name} \
@@ -36,6 +37,7 @@ pipeline {
                 EOF
 
                 '''
+                }
             }
         }
         
@@ -70,9 +72,11 @@ pipeline {
                     string(credentialsId:'db-host-container', variable: 'db-host-container'),
                     string(credentialsId:'app-port', variable: 'app-port'),
                 ])
+                {
                 sh'''
                 docker compose up --build -d
                 '''
+                }
             }
         }
         
