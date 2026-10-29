@@ -10,7 +10,7 @@ pipeline {
         
         stage('Build') {
             steps {
-                sh'''
+                sh '''
                 cd apps
                 npm install
                 '''
@@ -20,29 +20,29 @@ pipeline {
         stage('Set ENV') {
             steps {
                 withCredentials ([
-                    string(credentialsId:'db-name', variable: 'db-name'),
-                    string(credentialsId:'db-user', variable: 'db-user'),
-                    string(credentialsId:'db-password', variable: 'db-password'),
-                    string(credentialsId:'db-host', variable: 'db-host'),
-                    string(credentialsId:'app-port', variable: 'app-port'),
-                ]) 
-                {
-                script {
-                writeFile file: '.env', text: """
-                DB_NAME=${db-name} 
-                DB_HOST=${db-host} 
-                DB_USER=${db-user} 
-                DB_PASS=${db-password} 
-                APP_PORT=${app-port} 
-                """.stripIndent ()
+                    string(credentialsId: 'db-name', variable: 'DB_NAME'),
+                    string(credentialsId: 'db-user', variable: 'DB_USER'),
+                    string(credentialsId: 'db-password', variable: 'DB_PASSWORD'),
+                    string(credentialsId: 'db-host', variable: 'DB_HOST'),
+                    string(credentialsId: 'app-port', variable: 'APP_PORT')
+                ]) {
+                    script {
+                        // Membuat file .env di dalam folder apps agar terbaca oleh aplikasi & docker
+                        writeFile file: 'apps/.env', text: """
+                        DB_NAME=${DB_NAME} 
+                        DB_HOST=${DB_HOST} 
+                        DB_USER=${DB_USER} 
+                        DB_PASS=${DB_PASSWORD} 
+                        APP_PORT=${APP_PORT} 
+                        """.stripIndent()
+                    }
                 }
-             }
             }
         }
         
         stage('Testing') {
             steps {
-                sh'''
+                sh '''
                 cd apps
                 npm run test:coverage
                 '''
@@ -51,7 +51,7 @@ pipeline {
         
         stage('Code Review') {
             steps {
-                sh'''
+                sh '''
                 cd apps
                 sonar-scanner \
                 -Dsonar.projectKey=simple-apps \
@@ -64,21 +64,32 @@ pipeline {
         
         stage('Deploy') {
             steps {
+                // Jika untuk docker compose Anda menggunakan host khusus container, 
+                // ubah credentialsId-nya ke 'db-host-container'
                 withCredentials ([
-                    string(credentialsId:'db-name', variable: 'db-name'),
-                    string(credentialsId:'db-user', variable: 'db-user'),
-                    string(credentialsId:'db-password', variable: 'db-password'),
-                    string(credentialsId:'db-host-container', variable: 'db-host-container'),
-                    string(credentialsId:'app-port', variable: 'app-port'),
-                ])
-                {
-                sh'''
-                docker compose up --build -d
-                '''
+                    string(credentialsId: 'db-name', variable: 'DB_NAME'),
+                    string(credentialsId: 'db-user', variable: 'DB_USER'),
+                    string(credentialsId: 'db-password', variable: 'DB_PASSWORD'),
+                    string(credentialsId: 'db-host-container', variable: 'DB_HOST'),
+                    string(credentialsId: 'app-port', variable: 'APP_PORT')
+                ]) {
+                    script {
+                        // Timpa file .env khusus untuk container jika host-nya berbeda
+                        writeFile file: 'apps/.env', text: """
+                        DB_NAME=${DB_NAME} 
+                        DB_HOST=${DB_HOST} 
+                        DB_USER=${DB_USER} 
+                        DB_PASS=${DB_PASSWORD} 
+                        APP_PORT=${APP_PORT} 
+                        """.stripIndent()
+                    }
+                    
+                    sh '''
+                    cd apps
+                    docker compose up --build -d
+                    '''
                 }
             }
         }
-        
-        
     }
 }
