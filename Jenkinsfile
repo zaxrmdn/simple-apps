@@ -36,6 +36,7 @@ pipeline {
                 APP_PORT=${app-port} 
                 """.stripIndent ()
                 }
+             }
             }
         }
         
