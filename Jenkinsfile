@@ -27,16 +27,14 @@ pipeline {
                     string(credentialsId:'app-port', variable: 'app-port'),
                 ]) 
                 {
-                sh'''
-                cat > .env <<EOF \
-                DB_NAME=${db-name} \
-                DB_HOST=${db-host} \
-                DB_USER=${db-user} \
-                DB_PASS=${db-password} \
-                APP_PORT=${app-port} \
-                EOF
-
-                '''
+                script {
+                writeFile file: '.env', text: """
+                DB_NAME=${db-name} 
+                DB_HOST=${db-host} 
+                DB_USER=${db-user} 
+                DB_PASS=${db-password} 
+                APP_PORT=${app-port} 
+                """.stripIndent ()
                 }
             }
         }
