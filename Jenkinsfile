@@ -28,7 +28,7 @@ pipeline {
                 ]) 
                 {
                 sh'''
-                cat >> .env <EOF \
+                cat > .env <<EOF \
                 DB_NAME=${db-name} \
                 DB_HOST=${db-host} \
                 DB_USER=${db-user} \
