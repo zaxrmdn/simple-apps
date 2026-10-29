@@ -1,6 +1,7 @@
 services:
   backend:
     build: ./apps
+    container_name: backend
     restart: always
     links:
       - db
@@ -10,6 +11,7 @@ services:
       - app-data:/apps/public/images
   db:
     image: "mariadb"
+    container_name: db
     restart: always
     links:
       - phpmyadmin
