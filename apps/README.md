@@ -12,7 +12,6 @@ DB_PASS=password
 APP_PORT=3000
 ```
 
-
 sonar-scanner \
   -Dsonar.projectKey=simple-apps \
   -Dsonar.sources=. \
