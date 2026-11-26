@@ -1,6 +1,11 @@
 pipeline {
     agent { label 'devops1-zakaria' }
 
+    environment {
+        witc
+    }
+    
+
     stages {
         stage('Pull SCM') {
             steps {
