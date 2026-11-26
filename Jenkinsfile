@@ -38,6 +38,19 @@ pipeline {
                 '''
             }
         }
+
+        stage('Manual Approval') {
+
+            steps {
+                timeout(time: 30, unit: 'MINUTES') {
+                    input(
+                        message: 'Apakah yakin mau di deploy',
+                        ok: 'Approve',
+                        submitter: 'admin,devops'
+                    )
+                }
+            }
+        }
         
         stage('Deploy') {
             steps {
